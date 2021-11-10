@@ -1,31 +1,45 @@
-import React,{useState,useMemo} from "react";
+import React,{useState,useCallback} from "react";
+import Alert from "./Alert";
+import Main from "./Main";
 
-function complexComputed(num){
-  let i = 0;
-  while(i < 1000000) i++
-  return num *2;
-}
+const AlertContext = React.createContext()
 
 function App() {
-  const [colored,setColored] = useState(false);
-  const [count,setCount] = useState(1)
 
-  const styles = {
-    color: colored ? 'darkred' : 'black'
-  }
-
-const generateItemsFrmAPI = () => {
-  return new Array(count).fill('').map((_, i) => `Элемент ${i +1 }`)
-}
-
+  const [alert,setAlert] = useState(false)
+  const toggleAlert = () => setAlert(prev => !prev)
   return (
-<>
-<h1 style={styles}>Количество элементов:  {count}</h1>
-<button className={'btn'} onClick={() => setCount(prev => prev+1)}>Добавить</button>
-<button className={'btn'} onClick={() => setColored(prev => !prev)}>Изменить</button>
-</>
+    
+
+<AlertContext.Provider value={alert}>
+<div className={'container'}>
+<Alert/>
+<Main />
+
+</div>
+</AlertContext.Provider>
   );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default App;
- 
