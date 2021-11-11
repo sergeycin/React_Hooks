@@ -12,3 +12,4 @@ export default function ItemsList({getItems}){
         <ul>{items.map(i => <li key={i}>{i}</li>)}</ul>
     )
 }
+
